@@ -33,7 +33,7 @@ const MOCK_THREADS = [
     company: 'Gujarat Packaging Hub Pvt. Ltd.',
     role: 'Buyer',
     avatarInitials: 'RD',
-    avatarColor: 'bg-emerald-600',
+    avatarColor: 'bg-blue-600',
     verified: true,
     status: 'online',
     linkedOrder: 'ORD-9482',
@@ -228,9 +228,9 @@ const MOCK_THREADS = [
 
 // Presence dot
 const StatusDot = ({ status }) => {
-  const colors = { online: 'bg-emerald-400', away: 'bg-amber-400', offline: 'bg-slate-600' };
+  const colors = { online: 'bg-emerald-500', away: 'bg-amber-500', offline: 'bg-slate-300' };
   return (
-    <span className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-slate-900 ${colors[status] || colors.offline}`} />
+    <span className={`absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full border-2 border-white ${colors[status] || colors.offline}`} />
   );
 };
 
@@ -238,7 +238,7 @@ const StatusDot = ({ status }) => {
 const ConvoAvatar = ({ initials, color, status, size = 'md' }) => {
   const sz = size === 'sm' ? 'w-8 h-8 text-xs' : 'w-11 h-11 text-sm';
   return (
-    <div className={`relative shrink-0 ${sz} rounded-2xl ${color} flex items-center justify-center font-bold text-white`}>
+    <div className={`relative shrink-0 ${sz} rounded-2xl ${color} flex items-center justify-center font-bold text-white shadow-sm`}>
       {initials}
       <StatusDot status={status} />
     </div>
@@ -247,45 +247,45 @@ const ConvoAvatar = ({ initials, color, status, size = 'md' }) => {
 
 // Role badge
 const ROLE_BADGE = {
-  buyer:     { variant: 'brand',   label: 'Buyer' },
+  buyer:     { variant: 'blue',    label: 'Buyer' },
   seller:    { variant: 'teal',    label: 'Seller' },
   logistics: { variant: 'amber',   label: 'Logistics' },
 };
 
-// System message card (order, shipment, file)
+// System message card
 const SystemMessageCard = ({ msg, isMine }) => {
   const icons = { order: Package, shipment: Truck, file: FileText };
   const Icon = icons[msg.systemType] || FileText;
-  const border = isMine ? 'border-brand-500/30 bg-brand-600/15' : 'border-slate-700 bg-slate-800/60';
-  const iconColor = isMine ? 'text-brand-400' : 'text-teal-400';
+  const border = isMine ? 'border-blue-200 bg-blue-50/80' : 'border-slate-200 bg-slate-50';
+  const iconColor = isMine ? 'text-blue-600' : 'text-slate-600';
 
   return (
-    <div className={`flex items-start gap-2.5 p-3 rounded-xl border ${border} max-w-xs`}>
+    <div className={`flex items-start gap-2.5 p-3 rounded-xl border ${border} max-w-xs shadow-sm`}>
       <div className={`shrink-0 mt-0.5 ${iconColor}`}>
         <Icon className="w-4 h-4" />
       </div>
       <div>
-        <p className="text-xs font-semibold text-white">{msg.text}</p>
-        <p className="text-[10px] text-slate-400 mt-0.5">{msg.subtext}</p>
-        <p className="text-[9px] text-slate-500 mt-1">{msg.time}</p>
+        <p className="text-xs font-bold text-slate-900 font-display">{msg.text}</p>
+        <p className="text-[10px] text-slate-500 mt-0.5">{msg.subtext}</p>
+        <p className="text-[9px] text-slate-400 mt-1 font-mono">{msg.time}</p>
       </div>
     </div>
   );
 };
 
-// Empty state (no conversation selected)
+// Empty state
 const EmptyState = () => (
-  <div className="flex-1 flex flex-col items-center justify-center gap-4 p-8 text-center">
-    <div className="w-16 h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
-      <MessageSquarePlus className="w-8 h-8 text-slate-500" />
+  <div className="flex-1 flex flex-col items-center justify-center gap-4 p-8 text-center bg-slate-50/50">
+    <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-card flex items-center justify-center">
+      <MessageSquarePlus className="w-8 h-8 text-slate-400" />
     </div>
     <div>
-      <h3 className="text-sm font-bold text-slate-300">No conversation selected</h3>
+      <h3 className="text-sm font-bold text-slate-900 font-display">No conversation selected</h3>
       <p className="text-xs text-slate-500 mt-1 max-w-xs">
         Select a conversation from the list to view messages, or start a new B2B conversation with a buyer, seller, or logistics partner.
       </p>
     </div>
-    <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition">
+    <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
       <MessageSquarePlus className="w-4 h-4" />
       New Conversation
     </button>
@@ -300,23 +300,19 @@ export const MessagesPage = () => {
   const [activeThreadId, setActiveThreadId] = useState(null);
   const [inputText, setInputText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  // Mobile: 'list' | 'chat'
   const [mobileView, setMobileView] = useState('list');
 
   const messagesEndRef = useRef(null);
 
   const activeThread = threads.find(t => t.id === activeThreadId) || null;
 
-  // Scroll to bottom when active thread changes or messages added
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [activeThread?.messages?.length, activeThreadId]);
 
-  // Open a conversation
   const openThread = (threadId) => {
     setActiveThreadId(threadId);
     setMobileView('chat');
-    // Clear unread
     setThreads(prev => prev.map(t =>
       t.id === threadId ? { ...t, unread: 0 } : t
     ));
@@ -347,7 +343,7 @@ export const MessagesPage = () => {
     return (
       t.participantName.toLowerCase().includes(q) ||
       t.company.toLowerCase().includes(q) ||
-      t.lastMessage.toLowerCase().includes(q)
+      (t.lastMessage && t.lastMessage.toLowerCase().includes(q))
     );
   });
 
@@ -357,45 +353,45 @@ export const MessagesPage = () => {
   const ConversationList = () => (
     <div
       className={`
-        flex flex-col bg-slate-900 border-r border-slate-800
+        flex flex-col bg-white border-r border-slate-200
         w-full md:w-80 lg:w-96 shrink-0
         ${mobileView === 'chat' ? 'hidden md:flex' : 'flex'}
       `}
     >
       {/* Panel Header */}
-      <div className="p-4 border-b border-slate-800 space-y-3">
+      <div className="p-4 border-b border-slate-100 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-bold text-white">Messages</h2>
+            <h2 className="text-sm font-bold text-slate-900 font-display">Messages</h2>
             {totalUnread > 0 && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-brand-500 text-white">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-600 text-white">
                 {totalUnread}
               </span>
             )}
           </div>
-          <button className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition">
+          <button className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition">
             <MessageSquarePlus className="w-4 h-4" />
           </button>
         </div>
 
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search conversations..."
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-8 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition"
+            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition"
           />
         </div>
       </div>
 
       {/* Thread List */}
-      <div className="flex-1 overflow-y-auto divide-y divide-slate-800/40">
+      <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
         {filteredThreads.length === 0 ? (
           <div className="p-6 text-center space-y-2">
-            <Search className="w-6 h-6 text-slate-600 mx-auto" />
+            <Search className="w-6 h-6 text-slate-400 mx-auto" />
             <p className="text-xs text-slate-500">No conversations match your search.</p>
           </div>
         ) : (
@@ -414,8 +410,8 @@ export const MessagesPage = () => {
                 className={`
                   w-full p-4 text-left flex items-start gap-3 transition-all duration-150
                   ${isActive
-                    ? 'bg-brand-500/10 border-l-2 border-brand-500'
-                    : 'hover:bg-slate-800/50 border-l-2 border-transparent'}
+                    ? 'bg-blue-50/80 border-l-4 border-blue-600'
+                    : 'hover:bg-slate-50 border-l-4 border-transparent'}
                 `}
               >
                 <ConvoAvatar initials={thread.avatarInitials} color={thread.avatarColor} status={thread.status} />
@@ -424,19 +420,19 @@ export const MessagesPage = () => {
                   <div className="flex items-start justify-between gap-1">
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <span className={`text-xs font-bold truncate ${isActive ? 'text-white' : 'text-slate-200'}`}>
+                        <span className={`text-xs font-bold truncate font-display ${isActive ? 'text-blue-900' : 'text-slate-900'}`}>
                           {thread.participantName}
                         </span>
                         {thread.verified && (
-                          <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+                          <ShieldCheck className="w-3 h-3 text-emerald-600 shrink-0" />
                         )}
                       </div>
                       <p className="text-[10px] text-slate-500 truncate">{thread.company}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0">
-                      <span className="text-[9px] text-slate-500 whitespace-nowrap">{thread.time}</span>
+                      <span className="text-[9px] text-slate-400 whitespace-nowrap">{thread.time}</span>
                       {thread.unread > 0 && (
-                        <span className="w-4 h-4 rounded-full bg-brand-500 text-white text-[9px] font-bold flex items-center justify-center">
+                        <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[9px] font-bold flex items-center justify-center">
                           {thread.unread}
                         </span>
                       )}
@@ -445,7 +441,7 @@ export const MessagesPage = () => {
 
                   <div className="flex items-center gap-2 mt-1.5">
                     <Badge variant={rb.variant} size="xs">{rb.label}</Badge>
-                    <p className={`text-[11px] truncate flex-1 ${thread.unread > 0 ? 'text-white font-semibold' : 'text-slate-400'}`}>
+                    <p className={`text-[11px] truncate flex-1 ${thread.unread > 0 ? 'text-slate-900 font-bold' : 'text-slate-500'}`}>
                       {preview}
                     </p>
                   </div>
@@ -462,7 +458,7 @@ export const MessagesPage = () => {
   const ChatPanel = () => {
     if (!activeThread) {
       return (
-        <div className="hidden md:flex flex-1 flex-col bg-slate-950/40">
+        <div className="hidden md:flex flex-1 flex-col bg-slate-50/50">
           <EmptyState />
         </div>
       );
@@ -473,15 +469,14 @@ export const MessagesPage = () => {
     return (
       <div
         className={`
-          flex-1 flex flex-col bg-slate-950/30 min-w-0
+          flex-1 flex flex-col bg-white min-w-0
           ${mobileView === 'list' ? 'hidden md:flex' : 'flex'}
         `}
       >
         {/* Chat Header */}
-        <div className="p-4 border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm flex items-center gap-3">
-          {/* Mobile back button */}
+        <div className="p-4 border-b border-slate-100 bg-white flex items-center gap-3 shadow-xs">
           <button
-            className="md:hidden p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition"
+            className="md:hidden p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 transition"
             onClick={() => setMobileView('list')}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -491,53 +486,52 @@ export const MessagesPage = () => {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
-              <h3 className="text-sm font-bold text-white truncate">{activeThread.participantName}</h3>
+              <h3 className="text-sm font-bold text-slate-900 truncate font-display">{activeThread.participantName}</h3>
               {activeThread.verified && (
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" title="Verified Business" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" title="Verified Business" />
               )}
               <Badge variant={rb.variant} size="xs">{rb.label}</Badge>
             </div>
-            <p className="text-[10px] text-slate-400 truncate">{activeThread.company}</p>
+            <p className="text-[10px] text-slate-500 truncate">{activeThread.company}</p>
           </div>
 
           <div className="hidden sm:flex items-center gap-2">
             {activeThread.linkedOrder && (
-              <span className="text-[10px] font-mono bg-slate-800 border border-slate-700 text-slate-300 px-2.5 py-1 rounded-lg">
+              <span className="text-[10px] font-mono bg-slate-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg font-bold">
                 {activeThread.linkedOrder}
               </span>
             )}
-            <button className="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition">
+            <button className="p-2 rounded-xl hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition">
               <Phone className="w-4 h-4" />
             </button>
-            <button className="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition">
+            <button className="p-2 rounded-xl hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition">
               <MoreVertical className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Context Strip (linked material) */}
+        {/* Context Strip */}
         {activeThread.linkedMaterial && (
-          <div className="px-4 py-2.5 border-b border-slate-800 bg-slate-900/40 flex items-center gap-2 text-[11px]">
-            <Package className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-            <span className="text-slate-400">Re:</span>
-            <span className="font-semibold text-white truncate">{activeThread.linkedMaterial}</span>
-            <ChevronRight className="w-3 h-3 text-slate-600 ml-auto shrink-0" />
+          <div className="px-4 py-2.5 border-b border-slate-100 bg-slate-50/80 flex items-center gap-2 text-[11px]">
+            <Package className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <span className="text-slate-400 font-bold">Re:</span>
+            <span className="font-semibold text-slate-900 truncate">{activeThread.linkedMaterial}</span>
+            <ChevronRight className="w-3 h-3 text-slate-400 ml-auto shrink-0" />
           </div>
         )}
 
         {/* Messages Feed */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/30">
           {activeThread.messages.map((msg, idx) => {
             const isMine = msg.sender === 'me';
             const showAvatar = !isMine && (idx === 0 || activeThread.messages[idx - 1]?.sender !== 'them');
 
             return (
               <div key={msg.id} className={`flex items-end gap-2.5 ${isMine ? 'justify-end' : 'justify-start'}`}>
-                {/* Their avatar — only on first in run */}
                 {!isMine && (
                   <div className="shrink-0 mb-0.5">
                     {showAvatar
-                      ? <div className={`w-7 h-7 rounded-xl ${activeThread.avatarColor} flex items-center justify-center text-white text-[10px] font-bold`}>
+                      ? <div className={`w-7 h-7 rounded-xl ${activeThread.avatarColor} flex items-center justify-center text-white text-[10px] font-bold shadow-xs`}>
                           {activeThread.avatarInitials}
                         </div>
                       : <div className="w-7" />
@@ -551,10 +545,10 @@ export const MessagesPage = () => {
                   ) : (
                     <div
                       className={`
-                        px-4 py-2.5 rounded-2xl text-xs leading-relaxed
+                        px-4 py-2.5 rounded-2xl text-xs leading-relaxed shadow-xs
                         ${isMine
-                          ? 'bg-brand-600 text-white rounded-br-sm'
-                          : 'bg-slate-800 text-slate-200 rounded-bl-sm'}
+                          ? 'bg-blue-600 text-white rounded-br-xs font-medium'
+                          : 'bg-white border border-slate-200/90 text-slate-900 rounded-bl-xs'}
                       `}
                     >
                       {msg.text}
@@ -562,11 +556,11 @@ export const MessagesPage = () => {
                   )}
 
                   <div className={`flex items-center gap-1 ${isMine ? 'flex-row-reverse' : ''}`}>
-                    <span className="text-[9px] text-slate-500">{msg.time}</span>
+                    <span className="text-[9px] text-slate-400 font-mono">{msg.time}</span>
                     {isMine && (
                       msg.delivered
-                        ? <CheckCheck className="w-3 h-3 text-brand-400" />
-                        : <Check className="w-3 h-3 text-slate-500" />
+                        ? <CheckCheck className="w-3 h-3 text-blue-600" />
+                        : <Check className="w-3 h-3 text-slate-400" />
                     )}
                   </div>
                 </div>
@@ -576,8 +570,8 @@ export const MessagesPage = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Typing indicator area (static for now) */}
-        <div className="px-4 py-1.5 text-[10px] text-slate-500 italic h-6">
+        {/* Typing indicator area */}
+        <div className="px-4 py-1.5 text-[10px] text-slate-400 italic h-6 bg-slate-50/30">
           {activeThread.status === 'online' && activeThread.id === 'th_buyer_1' && (
             <span className="animate-pulse">{activeThread.participantName} is typing…</span>
           )}
@@ -586,11 +580,11 @@ export const MessagesPage = () => {
         {/* Message Input */}
         <form
           onSubmit={handleSend}
-          className="px-4 py-3 border-t border-slate-800 bg-slate-900/80 backdrop-blur-sm flex items-center gap-2"
+          className="px-4 py-3 border-t border-slate-200 bg-white flex items-center gap-2"
         >
           <button
             type="button"
-            className="p-2 rounded-xl text-slate-500 hover:text-white hover:bg-slate-800 transition shrink-0"
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition shrink-0"
           >
             <Paperclip className="w-4 h-4" />
           </button>
@@ -601,17 +595,17 @@ export const MessagesPage = () => {
             onChange={e => setInputText(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend(e)}
             placeholder="Type a message, technical inquiry, or logistics note…"
-            className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition"
+            className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition"
           />
 
           <button
             type="submit"
             disabled={!inputText.trim()}
             className={`
-              p-2.5 rounded-xl transition shrink-0 flex items-center justify-center
+              p-2.5 rounded-xl transition shrink-0 flex items-center justify-center shadow-xs
               ${inputText.trim()
-                ? 'bg-brand-600 hover:bg-brand-500 text-white'
-                : 'bg-slate-800 text-slate-600 cursor-not-allowed'}
+                ? 'bg-blue-600 hover:bg-blue-700 text-white font-semibold'
+                : 'bg-slate-100 text-slate-400 cursor-not-allowed'}
             `}
           >
             <Send className="w-4 h-4" />
@@ -624,18 +618,18 @@ export const MessagesPage = () => {
   /* ── Page Render ─────────────────────────────────────────── */
   return (
     <div className="flex flex-col h-[calc(100vh-7rem)] -m-6 sm:-m-8">
-      {/* Page Header (visible above panel) */}
-      <div className="px-6 sm:px-8 py-4 flex items-center justify-between border-b border-slate-800 bg-slate-950/60 shrink-0">
+      {/* Page Header */}
+      <div className="px-6 sm:px-8 py-4 flex items-center justify-between border-b border-slate-200 bg-white shrink-0 shadow-xs">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight">B2B Messaging</h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <h1 className="text-xl font-extrabold text-slate-900 tracking-tight font-display">B2B Messaging</h1>
+          <p className="text-xs text-slate-500 mt-0.5">
             Direct coordination with buyers, sellers, and logistics partners
           </p>
         </div>
         <div className="flex items-center gap-2">
           {totalUnread > 0 && (
-            <span className="text-xs text-slate-400">
-              <span className="font-bold text-white">{totalUnread}</span> unread
+            <span className="text-xs text-slate-500">
+              <span className="font-bold text-slate-900">{totalUnread}</span> unread
             </span>
           )}
         </div>

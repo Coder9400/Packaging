@@ -111,46 +111,48 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Subtle Accent Gradients */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="sm:mx-auto sm:w-full sm:max-w-2xl relative z-10 text-center mb-6">
         <Link to="/" className="inline-flex items-center gap-2.5 mb-4 group">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-200">
+          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-sm shadow-blue-600/30 group-hover:scale-105 transition-transform duration-200">
             <Recycle className="w-5 h-5" />
           </div>
-          <div className="flex items-center gap-1.5">
-            <span className="font-bold text-xl text-white tracking-tight">Circular</span>
-            <span className="font-bold text-xl text-emerald-400 tracking-tight">Exchange</span>
+          <div className="flex items-center gap-2">
+            <span className="font-extrabold text-xl text-slate-900 tracking-tight font-display">SYNAPSE</span>
+            <span className="text-[10px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 uppercase">
+              Circular
+            </span>
           </div>
         </Link>
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
           Register Enterprise Facility
         </h1>
-        <p className="mt-1.5 text-xs sm:text-sm text-slate-400 max-w-lg mx-auto leading-relaxed">
+        <p className="mt-1.5 text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed font-medium">
           Create an audited corporate profile to list surplus packaging materials, submit wholesale RFQs, and automate Scope 3 ESG reporting.
         </p>
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-2xl relative z-10">
-        <Card className="p-6 sm:p-10 space-y-6">
+        <Card className="p-6 sm:p-10 space-y-6 bg-white border-slate-200/90 shadow-card">
           {/* Error Banner */}
           {authError && (
-            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-3 text-xs text-rose-300 animate-fade-in">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start gap-3 text-xs text-rose-800 animate-fade-in">
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-rose-200">Registration Failed</p>
-                <p className="mt-0.5 text-rose-300/90">{authError}</p>
+                <p className="font-bold text-rose-900">Registration Failed</p>
+                <p className="mt-0.5 text-rose-700">{authError}</p>
               </div>
             </div>
           )}
 
           {/* Success Banner */}
           {isSuccess && (
-            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-xs text-emerald-300 animate-fade-in">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 text-xs text-emerald-800 animate-fade-in font-medium">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Facility account created successfully! Setting up your enterprise dashboard...</span>
             </div>
           )}
@@ -268,19 +270,19 @@ export const RegisterPage = () => {
             </div>
 
             {/* Compliance Guarantee Callout */}
-            <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-400 space-y-1">
-              <div className="flex items-center gap-1.5 text-slate-200 font-semibold">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            <div className="p-4 rounded-2xl bg-blue-50/60 border border-blue-100 text-xs text-slate-600 space-y-1">
+              <div className="flex items-center gap-1.5 text-blue-700 font-bold">
+                <ShieldCheck className="w-4 h-4 text-blue-600" />
                 <span>Enterprise Trust & Chain-of-Custody Standard</span>
               </div>
-              <p className="text-[11px] leading-relaxed text-slate-400">
+              <p className="text-[11px] leading-relaxed text-slate-500">
                 All registered facilities receive verified ISPM-15, EPA WARM 15.0 carbon accounting, and escrow dispute settlement coverage.
               </p>
             </div>
 
             {/* Terms Checkbox */}
             <div className="space-y-1 pt-1">
-              <label className="flex items-start gap-3 text-xs text-slate-300 cursor-pointer">
+              <label className="flex items-start gap-3 text-xs text-slate-600 font-medium cursor-pointer">
                 <input
                   type="checkbox"
                   checked={formData.termsAccepted}
@@ -289,14 +291,14 @@ export const RegisterPage = () => {
                     if (errors.terms) setErrors({ ...errors, terms: null });
                   }}
                   disabled={isLoading || isSuccess}
-                  className="mt-0.5 rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/20"
+                  className="mt-0.5 rounded bg-white border-slate-300 text-blue-600 focus:ring-blue-500/20"
                 />
                 <span className="leading-relaxed">
-                  I agree to the <Link to="/terms" className="text-emerald-400 hover:text-emerald-300 font-medium">Circular Trading Terms</Link>, <Link to="/privacy" className="text-emerald-400 hover:text-emerald-300 font-medium">Privacy Policy</Link>, and secondary material inspection protocols.
+                  I agree to the <Link to="/terms" className="text-blue-600 hover:text-blue-700 font-bold">Circular Trading Terms</Link>, <Link to="/privacy" className="text-blue-600 hover:text-blue-700 font-bold">Privacy Policy</Link>, and secondary material inspection protocols.
                 </span>
               </label>
               {errors.terms && (
-                <p className="text-xs text-rose-400 mt-1 pl-6">{errors.terms}</p>
+                <p className="text-xs text-rose-600 mt-1 pl-6 font-medium">{errors.terms}</p>
               )}
             </div>
 
@@ -315,9 +317,9 @@ export const RegisterPage = () => {
             </Button>
           </form>
 
-          <div className="pt-4 border-t border-slate-850 text-center text-xs text-slate-400">
+          <div className="pt-4 border-t border-slate-100 text-center text-xs text-slate-500 font-medium">
             Already have a registered enterprise account?{' '}
-            <Link to="/login" className="text-emerald-400 hover:text-emerald-300 font-semibold">
+            <Link to="/login" className="text-blue-600 hover:text-blue-700 font-bold">
               Sign In to B2B Portal
             </Link>
           </div>

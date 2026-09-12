@@ -69,11 +69,11 @@ const MOCK_REPORTED_LISTINGS = [
 ───────────────────────────────────────────────────────────── */
 
 const KPI_METRICS = [
-  { id: 'businesses',   label: 'Total Businesses',   value: '324',        sub: '+12 this month',    icon: Building2,     color: 'text-brand-400',   bg: 'bg-brand-500/10'   },
-  { id: 'listings',     label: 'Active Listings',    value: '876',        sub: '48 pending review', icon: Package,       color: 'text-teal-400',    bg: 'bg-teal-500/10'    },
-  { id: 'transactions', label: 'Transactions',        value: '1,284',      sub: 'All time',          icon: ArrowLeftRight,color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-  { id: 'reused',       label: 'Materials Reused',   value: '14,850 Units',sub: 'Kept in circulation',icon: Recycle,     color: 'text-amber-400',   bg: 'bg-amber-500/10'   },
-  { id: 'diverted',     label: 'Materials Diverted', value: '342.5 Tonnes',sub: 'From landfill',     icon: Leaf,          color: 'text-rose-400',    bg: 'bg-rose-500/10'    },
+  { id: 'businesses',   label: 'Total Businesses',   value: '324',        sub: '+12 this month',    icon: Building2,     color: 'text-blue-600',    bg: 'bg-blue-50 border border-blue-200'   },
+  { id: 'listings',     label: 'Active Listings',    value: '876',        sub: '48 pending review', icon: Package,       color: 'text-teal-600',    bg: 'bg-teal-50 border border-teal-200'    },
+  { id: 'transactions', label: 'Transactions',        value: '1,284',      sub: 'All time',          icon: ArrowLeftRight,color: 'text-emerald-600', bg: 'bg-emerald-50 border border-emerald-200' },
+  { id: 'reused',       label: 'Materials Reused',   value: '14,850 Units',sub: 'Kept in circulation',icon: Recycle,     color: 'text-amber-600',   bg: 'bg-amber-50 border border-amber-200'   },
+  { id: 'diverted',     label: 'Materials Diverted', value: '342.5 Tonnes',sub: 'From landfill',     icon: Leaf,          color: 'text-rose-600',    bg: 'bg-rose-50 border border-rose-200'    },
 ];
 
 const BIZ_STATUS_STYLES = {
@@ -101,52 +101,49 @@ const RPT_STATUS_STYLES = {
 };
 
 const CATEGORY_PILL = {
-  Cardboard: 'bg-emerald-500/15 text-emerald-400',
-  Plastic:   'bg-teal-500/15 text-teal-400',
-  Wood:      'bg-amber-500/15 text-amber-400',
-  Other:     'bg-indigo-500/15 text-indigo-400',
+  Cardboard: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+  Plastic:   'bg-blue-50 text-blue-700 border border-blue-200',
+  Wood:      'bg-amber-50 text-amber-700 border border-amber-200',
+  Other:     'bg-indigo-50 text-indigo-700 border border-indigo-200',
 };
 
 /* ─────────────────────────────────────────────────────────────
    SHARED COMPONENTS
 ───────────────────────────────────────────────────────────── */
 
-// Compact search bar used in each table header
 const TableSearch = ({ value, onChange, placeholder }) => (
   <div className="relative w-full sm:w-56">
-    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
+    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
     <input
       type="text"
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-8 pr-3 py-1.5 text-[11px] text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition"
+      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-8 pr-3 py-1.5 text-[11px] text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition"
     />
   </div>
 );
 
-// Filter select drop-down
 const TableFilter = ({ value, onChange, options }) => (
   <div className="relative">
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="appearance-none bg-slate-950 border border-slate-800 rounded-xl pl-3 pr-7 py-1.5 text-[11px] text-slate-300 focus:outline-none focus:border-brand-500 transition cursor-pointer"
+      className="appearance-none bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-7 py-1.5 text-[11px] text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition cursor-pointer"
     >
       {options.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
     </select>
-    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-500 pointer-events-none" />
+    <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none" />
   </div>
 );
 
-// Inline action buttons
 const ActionBtn = ({ icon: Icon, label, variant = 'ghost', onClick, disabled }) => {
-  const base = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold transition border';
+  const base = 'flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold transition border shadow-xs';
   const styles = {
-    ghost:   'border-slate-700 text-slate-400 hover:text-white hover:border-slate-600 hover:bg-slate-800',
-    approve: 'border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10',
-    reject:  'border-rose-500/30 text-rose-400 hover:bg-rose-500/10',
-    warn:    'border-amber-500/30 text-amber-400 hover:bg-amber-500/10',
+    ghost:   'border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-900 hover:bg-slate-100',
+    approve: 'border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100',
+    reject:  'border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100',
+    warn:    'border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100',
   };
   return (
     <button
@@ -160,14 +157,13 @@ const ActionBtn = ({ icon: Icon, label, variant = 'ghost', onClick, disabled }) 
   );
 };
 
-// Section wrapper with title + controls row
 const Section = ({ title, badge, badgeVariant = 'default', count, children }) => (
-  <Card className="overflow-hidden">
-    <div className="px-5 py-4 border-b border-slate-800 flex items-center gap-2 flex-wrap">
-      <CardTitle className="text-sm">{title}</CardTitle>
+  <Card className="overflow-hidden bg-white border-slate-200/90 shadow-card">
+    <div className="px-5 py-4 border-b border-slate-100 flex items-center gap-2 flex-wrap bg-slate-50/50">
+      <CardTitle className="text-sm font-bold text-slate-900 font-display">{title}</CardTitle>
       {badge && <Badge variant={badgeVariant} size="xs">{badge}</Badge>}
       {count !== undefined && (
-        <span className="ml-auto text-[10px] text-slate-500">{count} records</span>
+        <span className="ml-auto text-[10px] text-slate-400 font-mono">{count} records</span>
       )}
     </div>
     {children}
@@ -178,7 +174,6 @@ const Section = ({ title, badge, badgeVariant = 'default', count, children }) =>
    MAIN PAGE
 ───────────────────────────────────────────────────────────── */
 export const AdminPage = () => {
-  // Per-table search & filter state
   const [bizSearch,   setBizSearch]   = useState('');
   const [bizFilter,   setBizFilter]   = useState('all');
   const [lstSearch,   setLstSearch]   = useState('');
@@ -188,24 +183,19 @@ export const AdminPage = () => {
   const [rptSearch,   setRptSearch]   = useState('');
   const [rptFilter,   setRptFilter]   = useState('all');
 
-  // Local action state (mock approve/reject/suspend)
   const [businesses,  setBusinesses]  = useState(MOCK_BUSINESSES);
   const [listings,    setListings]    = useState(MOCK_LISTINGS);
   const [reports,     setReports]     = useState(MOCK_REPORTED_LISTINGS);
 
-  // ── Business actions
   const updateBizStatus = (id, status) =>
     setBusinesses(prev => prev.map(b => b.id === id ? { ...b, status } : b));
 
-  // ── Listing actions
   const updateLstStatus = (id, status) =>
     setListings(prev => prev.map(l => l.id === id ? { ...l, status } : l));
 
-  // ── Report actions
   const updateRptStatus = (id, status) =>
     setReports(prev => prev.map(r => r.id === id ? { ...r, status } : r));
 
-  // ── Filtered datasets
   const filteredBiz = useMemo(() => businesses.filter(b => {
     const q = bizSearch.toLowerCase();
     const matchSearch = !q || b.name.toLowerCase().includes(q) || b.location.toLowerCase().includes(q) || b.type.toLowerCase().includes(q);
@@ -240,58 +230,57 @@ export const AdminPage = () => {
   return (
     <div className="space-y-8">
 
-      {/* ── HEADER ──────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-brand-950/30 border border-slate-800 shadow-card">
+      {/* HEADER */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white shadow-card">
         <div>
           <div className="flex items-center gap-2.5 flex-wrap">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-display text-white">
               Admin Dashboard
             </h1>
-            <Badge variant="brand" size="xs">Admin Console</Badge>
+            <Badge variant="blue" size="xs" className="bg-white/20 text-white">Admin Console</Badge>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-blue-100 mt-1">
             Review registrations, approve listings, monitor transactions, and manage reported content.
           </p>
         </div>
         <div className="flex items-center gap-3 shrink-0">
           {pendingBiz > 0 && (
-            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold">
-              <AlertTriangle className="w-4 h-4" />
+            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/20 border border-amber-300/30 text-amber-100 text-xs font-bold shadow-sm">
+              <AlertTriangle className="w-4 h-4 text-amber-300" />
               {pendingBiz} pending approval{pendingBiz > 1 ? 's' : ''}
             </div>
           )}
           {openReports > 0 && (
-            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-bold">
-              <Flag className="w-4 h-4" />
+            <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-rose-500/20 border border-rose-300/30 text-rose-100 text-xs font-bold shadow-sm">
+              <Flag className="w-4 h-4 text-rose-300" />
               {openReports} open report{openReports > 1 ? 's' : ''}
             </div>
           )}
         </div>
       </div>
 
-      {/* ── KPI METRICS ─────────────────────────────────────────── */}
+      {/* KPI METRICS */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {KPI_METRICS.map(m => {
           const Icon = m.icon;
           return (
-            <div key={m.id} className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition space-y-3 shadow-card">
+            <div key={m.id} className="p-4 rounded-2xl bg-white border border-slate-200/90 hover:border-slate-300 transition space-y-3 shadow-card">
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${m.bg}`}>
                 <Icon className={`w-4.5 h-4.5 ${m.color}`} />
               </div>
               <div>
-                <div className="text-lg font-extrabold text-white leading-tight">{m.value}</div>
-                <div className="text-[10px] text-slate-400 font-semibold mt-0.5">{m.label}</div>
+                <div className="text-lg font-extrabold text-slate-900 leading-tight font-display">{m.value}</div>
+                <div className="text-[10px] text-slate-400 font-bold uppercase mt-0.5">{m.label}</div>
               </div>
-              <div className={`text-[10px] font-medium ${m.color}`}>{m.sub}</div>
+              <div className={`text-[10px] font-bold ${m.color}`}>{m.sub}</div>
             </div>
           );
         })}
       </div>
 
-      {/* ── SECTION 1: RECENT BUSINESSES ────────────────────────── */}
+      {/* SECTION 1: RECENT BUSINESSES */}
       <Section title="Recent Businesses" badge={`${pendingBiz} Pending`} badgeVariant={pendingBiz ? 'amber' : 'default'} count={filteredBiz.length}>
-        {/* Controls */}
-        <div className="px-5 py-3 border-b border-slate-800/60 flex flex-wrap items-center gap-3">
+        <div className="px-5 py-3 border-b border-slate-100 flex flex-wrap items-center gap-3">
           <TableSearch value={bizSearch} onChange={setBizSearch} placeholder="Search companies…" />
           <TableFilter
             value={bizFilter}
@@ -307,7 +296,7 @@ export const AdminPage = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs min-w-[720px]">
-            <thead className="bg-slate-900/60 border-b border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
               <tr>
                 <th className="px-5 py-3">Company</th>
                 <th className="px-5 py-3">Type</th>
@@ -318,19 +307,19 @@ export const AdminPage = () => {
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50">
+            <tbody className="divide-y divide-slate-100">
               {filteredBiz.map(b => {
                 const s = BIZ_STATUS_STYLES[b.status] || BIZ_STATUS_STYLES.active;
                 return (
-                  <tr key={b.id} className="hover:bg-slate-900/30 transition">
+                  <tr key={b.id} className="hover:bg-slate-50/70 transition">
                     <td className="px-5 py-3.5">
-                      <div className="font-semibold text-white">{b.name}</div>
-                      <div className="text-[10px] text-slate-500 mt-0.5">{b.location}</div>
+                      <div className="font-bold text-slate-900 font-display">{b.name}</div>
+                      <div className="text-[10px] text-slate-400 mt-0.5">{b.location}</div>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-300">{b.type}</td>
-                    <td className="px-5 py-3.5 text-slate-400 font-mono">{b.joinedDate}</td>
-                    <td className="px-5 py-3.5 text-center font-bold text-white">{b.listings}</td>
-                    <td className="px-5 py-3.5 text-center font-bold text-white">{b.transactions}</td>
+                    <td className="px-5 py-3.5 text-slate-600 font-medium">{b.type}</td>
+                    <td className="px-5 py-3.5 text-slate-500 font-mono">{b.joinedDate}</td>
+                    <td className="px-5 py-3.5 text-center font-bold text-slate-900">{b.listings}</td>
+                    <td className="px-5 py-3.5 text-center font-bold text-slate-900">{b.transactions}</td>
                     <td className="px-5 py-3.5">
                       <Badge variant={s.badge} size="xs">{s.label}</Badge>
                     </td>
@@ -353,16 +342,16 @@ export const AdminPage = () => {
                 );
               })}
               {filteredBiz.length === 0 && (
-                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-500 text-xs">No businesses match your search.</td></tr>
+                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-400 text-xs">No businesses match your search.</td></tr>
               )}
             </tbody>
           </table>
         </div>
       </Section>
 
-      {/* ── SECTION 2: RECENT LISTINGS ──────────────────────────── */}
+      {/* SECTION 2: RECENT LISTINGS */}
       <Section title="Recent Listings" count={filteredLst.length}>
-        <div className="px-5 py-3 border-b border-slate-800/60 flex flex-wrap items-center gap-3">
+        <div className="px-5 py-3 border-b border-slate-100 flex flex-wrap items-center gap-3">
           <TableSearch value={lstSearch} onChange={setLstSearch} placeholder="Search listings…" />
           <TableFilter
             value={lstFilter}
@@ -378,7 +367,7 @@ export const AdminPage = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs min-w-[740px]">
-            <thead className="bg-slate-900/60 border-b border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
               <tr>
                 <th className="px-5 py-3">Material</th>
                 <th className="px-5 py-3">Category</th>
@@ -389,15 +378,15 @@ export const AdminPage = () => {
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50">
+            <tbody className="divide-y divide-slate-100">
               {filteredLst.map(l => {
                 const s = LST_STATUS_STYLES[l.status] || LST_STATUS_STYLES.active;
                 return (
-                  <tr key={l.id} className="hover:bg-slate-900/30 transition">
+                  <tr key={l.id} className="hover:bg-slate-50/70 transition">
                     <td className="px-5 py-3.5">
-                      <div className="font-semibold text-white flex items-center gap-1.5">
+                      <div className="font-bold text-slate-900 flex items-center gap-1.5 font-display">
                         {l.name}
-                        {l.flagged && <Flag className="w-3 h-3 text-rose-400 shrink-0" title="Reported" />}
+                        {l.flagged && <Flag className="w-3 h-3 text-rose-500 shrink-0" title="Reported" />}
                       </div>
                     </td>
                     <td className="px-5 py-3.5">
@@ -405,12 +394,12 @@ export const AdminPage = () => {
                         {l.category}
                       </span>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-300 truncate max-w-[130px]">{l.company}</td>
+                    <td className="px-5 py-3.5 text-slate-600 truncate max-w-[130px] font-medium">{l.company}</td>
                     <td className="px-5 py-3.5">
-                      <div className="text-white font-semibold">{l.qty}</div>
-                      <div className="text-[10px] text-teal-400 font-mono">{l.price}</div>
+                      <div className="text-slate-900 font-bold">{l.qty}</div>
+                      <div className="text-[10px] text-blue-600 font-mono font-bold">{l.price}</div>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-400 font-mono">{l.posted}</td>
+                    <td className="px-5 py-3.5 text-slate-500 font-mono">{l.posted}</td>
                     <td className="px-5 py-3.5">
                       <Badge variant={s.badge} size="xs">{s.label}</Badge>
                     </td>
@@ -433,16 +422,16 @@ export const AdminPage = () => {
                 );
               })}
               {filteredLst.length === 0 && (
-                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-500 text-xs">No listings match your search.</td></tr>
+                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-400 text-xs">No listings match your search.</td></tr>
               )}
             </tbody>
           </table>
         </div>
       </Section>
 
-      {/* ── SECTION 3: RECENT TRANSACTIONS ──────────────────────── */}
+      {/* SECTION 3: RECENT TRANSACTIONS */}
       <Section title="Recent Transactions" count={filteredTxn.length}>
-        <div className="px-5 py-3 border-b border-slate-800/60 flex flex-wrap items-center gap-3">
+        <div className="px-5 py-3 border-b border-slate-100 flex flex-wrap items-center gap-3">
           <TableSearch value={txnSearch} onChange={setTxnSearch} placeholder="Search transactions…" />
           <TableFilter
             value={txnFilter}
@@ -458,7 +447,7 @@ export const AdminPage = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs min-w-[700px]">
-            <thead className="bg-slate-900/60 border-b border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
               <tr>
                 <th className="px-5 py-3">TXN ID</th>
                 <th className="px-5 py-3">Date</th>
@@ -470,17 +459,17 @@ export const AdminPage = () => {
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50">
+            <tbody className="divide-y divide-slate-100">
               {filteredTxn.map(t => {
                 const s = TXN_STATUS_STYLES[t.status] || TXN_STATUS_STYLES['Pending'];
                 return (
-                  <tr key={t.id} className="hover:bg-slate-900/30 transition">
-                    <td className="px-5 py-3.5 font-mono font-bold text-brand-400">{t.id}</td>
-                    <td className="px-5 py-3.5 text-slate-400 font-mono">{t.date}</td>
-                    <td className="px-5 py-3.5 font-semibold text-white">{t.material}</td>
-                    <td className="px-5 py-3.5 text-slate-300 truncate max-w-[120px]">{t.buyer}</td>
-                    <td className="px-5 py-3.5 text-slate-300 truncate max-w-[120px]">{t.seller}</td>
-                    <td className="px-5 py-3.5 text-right font-mono font-bold text-amber-400">{t.value}</td>
+                  <tr key={t.id} className="hover:bg-slate-50/70 transition">
+                    <td className="px-5 py-3.5 font-mono font-bold text-blue-600">{t.id}</td>
+                    <td className="px-5 py-3.5 text-slate-500 font-mono">{t.date}</td>
+                    <td className="px-5 py-3.5 font-bold text-slate-900 font-display">{t.material}</td>
+                    <td className="px-5 py-3.5 text-slate-600 truncate max-w-[120px]">{t.buyer}</td>
+                    <td className="px-5 py-3.5 text-slate-600 truncate max-w-[120px]">{t.seller}</td>
+                    <td className="px-5 py-3.5 text-right font-mono font-bold text-amber-600">{t.value}</td>
                     <td className="px-5 py-3.5">
                       <Badge variant={s.badge} size="xs">{s.label}</Badge>
                     </td>
@@ -491,21 +480,21 @@ export const AdminPage = () => {
                 );
               })}
               {filteredTxn.length === 0 && (
-                <tr><td colSpan={8} className="px-5 py-8 text-center text-slate-500 text-xs">No transactions match your search.</td></tr>
+                <tr><td colSpan={8} className="px-5 py-8 text-center text-slate-400 text-xs">No transactions match your search.</td></tr>
               )}
             </tbody>
           </table>
         </div>
       </Section>
 
-      {/* ── SECTION 4: REPORTED LISTINGS ────────────────────────── */}
+      {/* SECTION 4: REPORTED LISTINGS */}
       <Section
         title="Reported Listings"
         badge={openReports > 0 ? `${openReports} Open` : undefined}
         badgeVariant="rose"
         count={filteredRpt.length}
       >
-        <div className="px-5 py-3 border-b border-slate-800/60 flex flex-wrap items-center gap-3">
+        <div className="px-5 py-3 border-b border-slate-100 flex flex-wrap items-center gap-3">
           <TableSearch value={rptSearch} onChange={setRptSearch} placeholder="Search reports…" />
           <TableFilter
             value={rptFilter}
@@ -521,7 +510,7 @@ export const AdminPage = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs min-w-[760px]">
-            <thead className="bg-slate-900/60 border-b border-slate-800 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+            <thead className="bg-slate-50 border-b border-slate-200 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
               <tr>
                 <th className="px-5 py-3">Listing</th>
                 <th className="px-5 py-3">Company</th>
@@ -532,18 +521,18 @@ export const AdminPage = () => {
                 <th className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50">
+            <tbody className="divide-y divide-slate-100">
               {filteredRpt.map(r => {
                 const s = RPT_STATUS_STYLES[r.status] || RPT_STATUS_STYLES.open;
                 return (
-                  <tr key={r.id} className="hover:bg-slate-900/30 transition">
+                  <tr key={r.id} className="hover:bg-slate-50/70 transition">
                     <td className="px-5 py-3.5">
-                      <div className="font-semibold text-white">{r.listingName}</div>
-                      <div className="text-[10px] text-slate-500 font-mono">{r.listingId}</div>
+                      <div className="font-bold text-slate-900 font-display">{r.listingName}</div>
+                      <div className="text-[10px] text-slate-400 font-mono">{r.listingId}</div>
                     </td>
-                    <td className="px-5 py-3.5 text-slate-300 truncate max-w-[140px]">{r.company}</td>
-                    <td className="px-5 py-3.5 text-slate-400 truncate max-w-[130px]">{r.reportedBy}</td>
-                    <td className="px-5 py-3.5 text-slate-400 max-w-[220px]">
+                    <td className="px-5 py-3.5 text-slate-700 truncate max-w-[140px] font-medium">{r.company}</td>
+                    <td className="px-5 py-3.5 text-slate-500 truncate max-w-[130px]">{r.reportedBy}</td>
+                    <td className="px-5 py-3.5 text-slate-600 max-w-[220px]">
                       <p className="line-clamp-2 leading-relaxed">{r.reason}</p>
                     </td>
                     <td className="px-5 py-3.5 text-slate-400 font-mono whitespace-nowrap">{r.date}</td>
@@ -566,7 +555,7 @@ export const AdminPage = () => {
                 );
               })}
               {filteredRpt.length === 0 && (
-                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-500 text-xs">No reports match your search.</td></tr>
+                <tr><td colSpan={7} className="px-5 py-8 text-center text-slate-400 text-xs">No reports match your search.</td></tr>
               )}
             </tbody>
           </table>

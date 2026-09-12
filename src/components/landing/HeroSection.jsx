@@ -8,132 +8,163 @@ import {
   Recycle,
   Repeat,
   Factory,
-  Sparkles
+  Sparkles,
+  CheckCircle2
 } from 'lucide-react';
 import { Button } from '../common/Button';
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden pt-12 pb-16 lg:pt-20 lg:pb-24 border-b border-slate-800/80 bg-slate-950">
-      {/* Subtle Ambient Radial Highlight */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-slate-200/80 bg-gradient-to-b from-white via-slate-50 to-blue-50/30">
+      {/* Subtle Blue Glow Highlights */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto space-y-6">
-          {/* Subtle Category Pill */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>B2B Circular Packaging & Secondary Raw Materials Exchange</span>
-          </div>
-
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
-            Give Packaging a <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400">Second Life.</span>
-          </h1>
-
-          {/* Subtext */}
-          <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Connect businesses with surplus packaging materials to the companies that can reuse or recycle them.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
-            <Button to="/marketplace" size="lg" variant="primary" icon={ArrowRight} iconPosition="right" className="w-full sm:w-auto">
-              Explore Materials
-            </Button>
-            <Button to="/list-material" size="lg" variant="secondary" icon={PlusSquare} className="w-full sm:w-auto">
-              List Your Materials
-            </Button>
-          </div>
-        </div>
-
-        {/* Original Circular Flow Diagram Visual (SVG & Geometric CSS Flow) */}
-        <div className="mt-14 max-w-4xl mx-auto">
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 border border-slate-800 backdrop-blur-sm">
-            <div className="text-center mb-6">
-              <span className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">
-                Closed-Loop Industrial Material Flow
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* Left Column: Headline, Subtext, CTAs */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            {/* Top Pill Badge */}
+            <Link
+              to="/marketplace"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold hover:bg-blue-100/80 transition group shadow-sm"
+            >
+              <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold uppercase tracking-wide">
+                NEW
               </span>
+              <span>Synapse 2.0 is live</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+
+            {/* Main Headline */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] font-display">
+              The All-in-One B2B Platform for{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">
+                Circular Packaging
+              </span>
+            </h1>
+
+            {/* Subtext */}
+            <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
+              Synapse helps you buy, sell, request, and transport secondary raw materials — all in one powerful connected platform.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+              <Button
+                to="/register"
+                size="lg"
+                variant="primary"
+                icon={ArrowRight}
+                iconPosition="right"
+                className="shadow-glow-blue"
+              >
+                Start Your Free Trial
+              </Button>
+
+              <Button
+                to="/marketplace"
+                size="lg"
+                variant="outline"
+                icon={Sparkles}
+              >
+                Explore Marketplace
+              </Button>
             </div>
 
-            {/* Step Nodes Flow Container */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 relative items-center">
-              {/* Node 1: Business */}
-              <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 transition">
-                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 mb-2">
-                  <Building2 className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-white">Business</span>
-                <span className="text-[10px] text-slate-500 mt-0.5">Manufacturing / Retail</span>
+            {/* Checkmarks Strip */}
+            <div className="pt-3 flex flex-wrap items-center gap-5 text-xs text-slate-500 font-medium">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>No credit card required</span>
               </div>
-
-              {/* Connector 1 */}
-              <div className="hidden md:flex flex-col items-center justify-center text-slate-600">
-                <span className="text-[10px] text-slate-500 font-mono mb-0.5">Generates</span>
-                <div className="w-full h-0.5 bg-gradient-to-r from-slate-700 to-emerald-500/50 relative">
-                  <div className="absolute right-0 -top-1 w-2 h-2 border-t-2 border-r-2 border-emerald-400 rotate-45" />
-                </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>14-day enterprise trial</span>
               </div>
-
-              {/* Node 2: Surplus Material */}
-              <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 transition">
-                <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-2">
-                  <Package className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-white">Surplus Material</span>
-                <span className="text-[10px] text-teal-400/80 mt-0.5">Cardboard, Pallets, Resin</span>
-              </div>
-
-              {/* Connector 2 */}
-              <div className="hidden md:flex flex-col items-center justify-center text-slate-600">
-                <span className="text-[10px] text-emerald-400 font-mono mb-0.5">Matches</span>
-                <div className="w-full h-0.5 bg-gradient-to-r from-teal-500/50 to-emerald-500 relative">
-                  <div className="absolute right-0 -top-1 w-2 h-2 border-t-2 border-r-2 border-emerald-400 rotate-45" />
-                </div>
-              </div>
-
-              {/* Central Hub Node 3: Circular Exchange */}
-              <div className="flex flex-col items-center text-center p-4 rounded-xl bg-gradient-to-b from-emerald-950/40 to-slate-950 border-2 border-emerald-500/40 shadow-lg shadow-emerald-500/10">
-                <div className="w-11 h-11 rounded-xl bg-emerald-500 flex items-center justify-center text-slate-950 mb-2 font-bold">
-                  <Recycle className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-bold text-white">Circular Exchange</span>
-                <span className="text-[10px] text-emerald-400 mt-0.5 font-medium">B2B Network & Escrow</span>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>Cancel anytime</span>
               </div>
             </div>
+          </div>
 
-            {/* Bottom Row Return Flow for Complete Circular Loop */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-4 pt-4 border-t border-slate-800/60 items-center">
-              <div className="hidden md:block col-span-2 text-right pr-4">
-                <span className="text-[11px] text-emerald-400 font-medium">
-                  Zero landfill waste loop ➔
+          {/* Right Column: Nexora-style Elevated SaaS Dashboard Mockup */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative rounded-3xl bg-white border border-slate-200/90 shadow-float p-5 sm:p-7 space-y-6 backdrop-blur-xl">
+              {/* Mockup Top Header */}
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
+                    <Recycle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="font-bold text-sm text-slate-900 font-display block">Dashboard Command</span>
+                    <span className="text-[11px] text-slate-400">Welcome back, Apex Logistics!</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
+                    ● Live Telemetry
+                  </span>
+                </div>
+              </div>
+
+              {/* 3 Metric Cards Row */}
+              <div className="grid grid-cols-3 gap-3 text-left">
+                <div className="p-3 rounded-2xl bg-slate-50/80 border border-slate-100">
+                  <span className="text-[10px] text-slate-500 uppercase font-semibold block">Total Revenue</span>
+                  <span className="text-base font-extrabold text-slate-900 font-display block mt-0.5">₹24,980</span>
+                  <span className="text-[10px] font-bold text-emerald-600">+12.4%</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-slate-50/80 border border-slate-100">
+                  <span className="text-[10px] text-slate-500 uppercase font-semibold block">Active Lots</span>
+                  <span className="text-base font-extrabold text-slate-900 font-display block mt-0.5">128</span>
+                  <span className="text-[10px] font-bold text-blue-600">+8.1%</span>
+                </div>
+                <div className="p-3 rounded-2xl bg-slate-50/80 border border-slate-100">
+                  <span className="text-[10px] text-slate-500 uppercase font-semibold block">Tons Diverted</span>
+                  <span className="text-base font-extrabold text-slate-900 font-display block mt-0.5">1,245</span>
+                  <span className="text-[10px] font-bold text-indigo-600">+18.7%</span>
+                </div>
+              </div>
+
+              {/* Sparkline Visual */}
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-50/50 via-indigo-50/30 to-white border border-blue-100">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-bold text-slate-800">Circular Exchange Growth</span>
+                  <span className="text-[11px] font-semibold text-blue-600 bg-white px-2 py-0.5 rounded-full border border-blue-200 shadow-sm">
+                    This Month ▾
+                  </span>
+                </div>
+                <div className="h-16 w-full flex items-end justify-between gap-1 pt-2">
+                  {[35, 45, 30, 65, 80, 55, 90, 70, 95, 110, 85, 120].map((h, i) => (
+                    <div
+                      key={i}
+                      className="w-full bg-blue-600 rounded-t-sm hover:bg-indigo-600 transition"
+                      style={{ height: `${(h / 120) * 100}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Recent Activity List */}
+              <div className="space-y-2">
+                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider block text-left">
+                  Recent Platform Events
                 </span>
-              </div>
-
-              {/* Node 4: Reuse / Recycle */}
-              <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 transition">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-2">
-                  <Repeat className="w-5 h-5" />
+                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                      <Package className="w-4 h-4" />
+                    </div>
+                    <div className="text-left">
+                      <p className="font-bold text-slate-900">25 Tons Grade OCC Sold</p>
+                      <p className="text-[10px] text-slate-500">VerdeTech Polymers</p>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold text-slate-400">2m ago</span>
                 </div>
-                <span className="text-xs font-semibold text-white">Reuse / Recycle</span>
-                <span className="text-[10px] text-slate-500 mt-0.5">Clean Repulping & Regrind</span>
-              </div>
-
-              {/* Connector 3 */}
-              <div className="hidden md:flex flex-col items-center justify-center text-slate-600">
-                <span className="text-[10px] text-slate-500 font-mono mb-0.5">Feeds</span>
-                <div className="w-full h-0.5 bg-gradient-to-r from-emerald-500/50 to-slate-700 relative">
-                  <div className="absolute right-0 -top-1 w-2 h-2 border-t-2 border-r-2 border-slate-400 rotate-45" />
-                </div>
-              </div>
-
-              {/* Node 5: New Business Production */}
-              <div className="flex flex-col items-center text-center p-3.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 transition">
-                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300 mb-2">
-                  <Factory className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-white">New Business</span>
-                <span className="text-[10px] text-slate-500 mt-0.5">Secondary Production</span>
               </div>
             </div>
           </div>

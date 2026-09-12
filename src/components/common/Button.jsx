@@ -2,20 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const variants = {
-  primary: 'bg-brand-500 hover:bg-brand-600 text-slate-950 font-semibold shadow-lg shadow-brand-500/20 active:scale-[0.98]',
-  secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 font-medium active:scale-[0.98]',
-  outline: 'bg-transparent hover:bg-brand-500/10 text-brand-400 border border-brand-500/30 hover:border-brand-500/60 font-medium',
-  ghost: 'bg-transparent hover:bg-slate-800/80 text-slate-300 hover:text-white font-medium',
-  danger: 'bg-rose-500/20 hover:bg-rose-500/30 text-rose-400 border border-rose-500/30 font-medium',
-  accent: 'bg-teal-500 hover:bg-teal-600 text-slate-950 font-semibold shadow-lg shadow-teal-500/20 active:scale-[0.98]',
+  primary: 'bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm shadow-blue-600/30 active:scale-[0.98]',
+  secondary: 'bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold border border-blue-200/80 active:scale-[0.98]',
+  outline: 'bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200 shadow-sm active:scale-[0.98]',
+  ghost: 'bg-transparent hover:bg-slate-100 text-slate-600 hover:text-slate-900 font-medium',
+  danger: 'bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-medium',
+  accent: 'bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-sm active:scale-[0.98]',
 };
 
 const sizes = {
-  xs: 'px-2.5 py-1 text-xs rounded-md',
-  sm: 'px-3 py-1.5 text-xs rounded-lg',
-  md: 'px-4 py-2 text-sm rounded-lg',
-  lg: 'px-5 py-2.5 text-base rounded-xl',
-  xl: 'px-6 py-3 text-lg rounded-xl',
+  xs: 'px-2.5 py-1 text-xs rounded-full',
+  sm: 'px-3.5 py-1.5 text-xs rounded-full',
+  md: 'px-4.5 py-2 text-sm rounded-full',
+  lg: 'px-6 py-2.5 text-sm rounded-full',
+  xl: 'px-7 py-3 text-base rounded-full',
 };
 
 export const Button = ({

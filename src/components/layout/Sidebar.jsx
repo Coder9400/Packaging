@@ -53,7 +53,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden"
           onClick={onClose}
         />
       )}
@@ -61,28 +61,30 @@ export const Sidebar = ({ isOpen, onClose }) => {
       {/* Sidebar Container */}
       <aside
         className={`
-          fixed top-0 bottom-0 left-0 z-40 w-64 bg-slate-950 border-r border-slate-800/90
+          fixed top-0 bottom-0 left-0 z-40 w-64 bg-white border-r border-slate-200/90
           transition-transform duration-200 ease-in-out lg:translate-x-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          flex flex-col justify-between overflow-y-auto p-4
+          flex flex-col justify-between overflow-y-auto p-4 shadow-sm
         `}
       >
         <div className="space-y-6">
           {/* Logo & Close Button Header */}
-          <div className="flex items-center justify-between px-2 pt-1 pb-2 border-b border-slate-800/80">
+          <div className="flex items-center justify-between px-2 pt-1 pb-2 border-b border-slate-100">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition">
-                <Recycle className="w-4 h-4" />
+              <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-sm shadow-blue-600/30 group-hover:scale-105 transition">
+                <Recycle className="w-4.5 h-4.5" />
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="font-bold text-sm text-white tracking-tight">Circular</span>
-                <span className="font-bold text-sm text-emerald-400 tracking-tight">Exchange</span>
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold text-base text-slate-900 tracking-tight font-display">SYNAPSE</span>
+                <span className="text-[9px] font-bold tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 uppercase">
+                  Circular
+                </span>
               </div>
             </Link>
 
             <button
               onClick={onClose}
-              className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              className="lg:hidden p-1.5 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100"
               aria-label="Close sidebar"
             >
               <X className="w-5 h-5" />
@@ -90,13 +92,13 @@ export const Sidebar = ({ isOpen, onClose }) => {
           </div>
 
           {/* Company Context Pill */}
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800/80 space-y-1">
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">Enterprise</span>
-              <Badge variant="emerald" size="xs">Verified</Badge>
+              <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Enterprise</span>
+              <Badge variant="blue" size="xs">Verified</Badge>
             </div>
-            <p className="text-xs font-bold text-white truncate">{currentCompany?.name || 'Company Profile'}</p>
-            <p className="text-[10px] text-emerald-400 font-medium truncate">{currentCompany?.type || 'Manufacturer'}</p>
+            <p className="text-xs font-bold text-slate-900 truncate">{currentCompany?.name || 'Company Profile'}</p>
+            <p className="text-[10px] text-blue-600 font-semibold truncate">{currentCompany?.type || 'Manufacturer'}</p>
           </div>
 
           {/* Navigation Links */}
@@ -108,10 +110,10 @@ export const Sidebar = ({ isOpen, onClose }) => {
                 onClick={onClose}
                 end={item.path === '/dashboard'}
                 className={({ isActive }) => `
-                  flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium transition duration-150
+                  flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition duration-150
                   ${isActive
-                    ? 'bg-emerald-500/15 text-emerald-400 font-semibold border border-emerald-500/25'
-                    : 'text-slate-300 hover:bg-slate-900 hover:text-white'
+                    ? 'bg-blue-600 text-white shadow-sm shadow-blue-600/30 font-bold'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                   }
                 `}
               >
@@ -120,7 +122,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
                   <span>{item.label}</span>
                 </div>
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="px-1.5 py-0.5 text-[10px] font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                     {item.badge}
                   </span>
                 )}
@@ -130,22 +132,22 @@ export const Sidebar = ({ isOpen, onClose }) => {
         </div>
 
         {/* Bottom Section: Company, Settings, Logout */}
-        <div className="space-y-1 pt-4 border-t border-slate-800/80">
+        <div className="space-y-1 pt-4 border-t border-slate-100">
           <NavLink
             to="/profile"
             onClick={onClose}
             className={({ isActive }) => `
-              flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition
-              ${isActive ? 'bg-emerald-500/15 text-emerald-400 font-semibold' : 'text-slate-400 hover:text-white hover:bg-slate-900'}
+              flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition
+              ${isActive ? 'bg-blue-50 text-blue-600 font-bold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}
             `}
           >
             <Building2 className="w-4 h-4 shrink-0" />
-            <span>Company</span>
+            <span>Company Profile</span>
           </NavLink>
 
           <button
             onClick={() => setIsSettingsOpen(true)}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-900 transition"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition"
           >
             <Settings className="w-4 h-4 shrink-0" />
             <span>Settings</span>
@@ -153,7 +155,7 @@ export const Sidebar = ({ isOpen, onClose }) => {
 
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-rose-400/90 hover:text-rose-300 hover:bg-rose-500/10 transition"
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 transition"
           >
             <LogOut className="w-4 h-4 shrink-0" />
             <span>Logout</span>
@@ -169,15 +171,15 @@ export const Sidebar = ({ isOpen, onClose }) => {
         subtitle="Configure material notifications, API keys, and ESG reporting standards"
       >
         <div className="space-y-4 text-xs">
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
-            <h4 className="font-semibold text-white">Automated ESG Certification</h4>
-            <label className="flex items-center justify-between text-slate-300 cursor-pointer">
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <h4 className="font-bold text-slate-900">Automated ESG Certification</h4>
+            <label className="flex items-center justify-between text-slate-700 font-medium cursor-pointer">
               <span>Generate EPA WARM audit certificates on dock delivery</span>
-              <input type="checkbox" defaultChecked className="rounded bg-slate-900 border-slate-700 text-emerald-500" />
+              <input type="checkbox" defaultChecked className="rounded bg-white border-slate-300 text-blue-600 focus:ring-blue-500/20" />
             </label>
-            <label className="flex items-center justify-between text-slate-300 cursor-pointer">
+            <label className="flex items-center justify-between text-slate-700 font-medium cursor-pointer">
               <span>Automatic backhaul freight matchmaking</span>
-              <input type="checkbox" defaultChecked className="rounded bg-slate-900 border-slate-700 text-emerald-500" />
+              <input type="checkbox" defaultChecked className="rounded bg-white border-slate-300 text-blue-600 focus:ring-blue-500/20" />
             </label>
           </div>
 

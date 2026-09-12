@@ -38,7 +38,7 @@ export const Navbar = ({ onToggleSidebar }) => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left: Brand Logo & Mobile Toggle */}
@@ -46,7 +46,7 @@ export const Navbar = ({ onToggleSidebar }) => {
             {onToggleSidebar && (
               <button
                 onClick={onToggleSidebar}
-                className="lg:hidden p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/80"
+                className="lg:hidden p-2 text-slate-500 hover:text-slate-900 rounded-xl hover:bg-slate-100"
                 aria-label="Toggle navigation menu"
               >
                 <Menu className="w-5 h-5" />
@@ -54,16 +54,14 @@ export const Navbar = ({ onToggleSidebar }) => {
             )}
 
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-400 flex items-center justify-center text-slate-950 shadow-md shadow-brand-500/20 group-hover:scale-105 transition">
-                <Recycle className="w-5 h-5 text-slate-950" />
+              <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-sm shadow-blue-600/30 group-hover:scale-105 transition">
+                <Recycle className="w-5 h-5" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-base text-white tracking-tight">Circular</span>
-                  <span className="font-bold text-base text-brand-400 tracking-tight">Exchange</span>
-                  <Badge variant="teal" size="xs" className="hidden sm:inline-flex">B2B</Badge>
-                </div>
-                <span className="text-[10px] text-slate-400 font-medium tracking-wide">Packaging & Material Flow</span>
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold text-lg text-slate-900 tracking-tight font-display">SYNAPSE</span>
+                <span className="hidden sm:inline-block text-[9px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200 uppercase">
+                  Circular
+                </span>
               </div>
             </Link>
 
@@ -76,10 +74,10 @@ export const Navbar = ({ onToggleSidebar }) => {
                     key={link.path}
                     to={link.path}
                     className={`
-                      px-3 py-1.5 rounded-lg text-xs font-medium transition
+                      px-3 py-1.5 rounded-xl text-xs font-semibold transition
                       ${active
-                        ? 'bg-slate-800 text-brand-400 font-semibold'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-850'
+                        ? 'bg-blue-50 text-blue-600 font-bold border border-blue-200/80'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                       }
                     `}
                   >
@@ -100,26 +98,26 @@ export const Navbar = ({ onToggleSidebar }) => {
               <div className="relative">
                 <button
                   onClick={() => setShowPersonaMenu(!showPersonaMenu)}
-                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-left transition text-xs"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 shadow-sm text-left transition text-xs"
                 >
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-100" />
                   <div className="hidden xl:block">
-                    <p className="text-white font-medium leading-none truncate max-w-[130px]">{currentUser?.email || 'User Account'}</p>
-                    <p className="text-[10px] text-slate-400 leading-tight mt-0.5 truncate max-w-[130px]">{currentCompany?.name || currentCompany?.type || 'Enterprise'}</p>
+                    <p className="text-slate-900 font-bold leading-none truncate max-w-[130px]">{currentUser?.email || 'User Account'}</p>
+                    <p className="text-[10px] text-slate-500 leading-tight mt-0.5 truncate max-w-[130px]">{currentCompany?.name || currentCompany?.type || 'Enterprise'}</p>
                   </div>
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                 </button>
 
                 {showPersonaMenu && (
-                  <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50 animate-fade-in space-y-1">
-                    <div className="px-3 py-2 border-b border-slate-800">
-                      <p className="text-xs font-semibold text-white truncate">{currentUser?.email}</p>
-                      <p className="text-[10px] text-brand-400 mt-0.5 truncate">{currentCompany?.name || 'Facility Account'}</p>
+                  <div className="absolute right-0 mt-2 w-60 rounded-2xl bg-white border border-slate-200 shadow-float p-2 z-50 animate-fade-in space-y-1">
+                    <div className="px-3 py-2 border-b border-slate-100">
+                      <p className="text-xs font-bold text-slate-900 truncate">{currentUser?.email}</p>
+                      <p className="text-[10px] text-blue-600 font-medium mt-0.5 truncate">{currentCompany?.name || 'Facility Account'}</p>
                     </div>
                     <Link
                       to="/profile"
                       onClick={() => setShowPersonaMenu(false)}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-slate-700 hover:bg-slate-100 font-medium rounded-xl transition"
                     >
                       Facility Profile
                     </Link>
@@ -128,7 +126,7 @@ export const Navbar = ({ onToggleSidebar }) => {
                         logout();
                         setShowPersonaMenu(false);
                       }}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-rose-400 hover:bg-rose-500/10 rounded-xl transition"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-rose-600 font-medium hover:bg-rose-50 rounded-xl transition"
                     >
                       <LogOut className="w-3.5 h-3.5" />
                       Sign Out

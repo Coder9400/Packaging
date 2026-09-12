@@ -40,28 +40,28 @@ export const TRUST_METRICS = [
 export const HOW_IT_WORKS_STEPS = [
   {
     step: "01",
-    title: "List Surplus Materials",
+    title: "List Materials",
     description: "Upload surplus packaging, baled cardboard, polymer regrind, or reconditioned pallets with quantity, grade specs, and dock pickup parameters.",
     iconName: "PlusCircle",
     tag: "Generators & Retailers"
   },
   {
     step: "02",
-    title: "Discover Secondary Feedstock",
+    title: "Find Opportunities",
     description: "Browse verified industrial lots filtered by material stream, purity standard, MOQ, distance, and real-time Scope 3 GHG savings factor.",
     iconName: "Search",
     tag: "Processors & Recyclers"
   },
   {
     step: "03",
-    title: "Connect & Transact Safely",
+    title: "Request & Transact",
     description: "Submit wholesale bids, coordinate lab quality samples, and lock settlement securely inside platform escrow pending dock inspection.",
     iconName: "Handshake",
     tag: "Secure Settlement"
   },
   {
     step: "04",
-    title: "Deliver via Green Logistics",
+    title: "Move & Track",
     description: "Coordinate optimized backhaul freight or direct facility dispatch with automated chain-of-custody transfer and instant ESG audit certificates.",
     iconName: "Truck",
     tag: "Chain of Custody"

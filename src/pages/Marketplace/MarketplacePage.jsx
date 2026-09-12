@@ -185,13 +185,13 @@ export const MarketplacePage = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <Badge variant="emerald" size="xs">B2B Material Exchange</Badge>
-              <span className="text-xs text-slate-500 font-mono">100% Verified Facilities</span>
+              <Badge variant="blue" size="xs">B2B Material Exchange</Badge>
+              <span className="text-xs text-slate-500 font-medium">100% Verified Facilities</span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-1.5">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1.5 font-display">
               Find Materials. Reduce Waste.
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">
               Discover surplus and recyclable packaging materials from businesses around you.
             </p>
           </div>
@@ -209,19 +209,19 @@ export const MarketplacePage = () => {
         {/* Big Search Bar */}
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-            <Search className="h-5 w-5 text-emerald-400" />
+            <Search className="h-5 w-5 text-blue-600" />
           </div>
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search cardboard, plastic, pallets, containers, or city..."
-            className="w-full bg-slate-900/90 border border-slate-800 hover:border-slate-700 text-white placeholder-slate-500 text-sm rounded-2xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 focus:border-emerald-500 shadow-xl transition"
+            className="w-full bg-white border border-slate-200 hover:border-slate-300 text-slate-900 placeholder-slate-400 text-sm rounded-2xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-4 focus:ring-blue-500/15 focus:border-blue-600 shadow-card transition"
           />
           {searchTerm && (
             <button
               onClick={() => setSearchTerm('')}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-white"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-900"
             >
               <X className="h-4 w-4" />
             </button>
@@ -230,36 +230,36 @@ export const MarketplacePage = () => {
       </div>
 
       {/* Mobile Filter Trigger Button & Sorting Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-slate-200/90 shadow-card">
         <div className="flex items-center gap-3">
           {/* Mobile Filter Drawer Button */}
           <button
             onClick={() => setIsMobileFilterOpen(true)}
-            className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs font-semibold hover:bg-slate-850 transition"
+            className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs font-semibold hover:bg-slate-100 transition"
           >
-            <SlidersHorizontal className="w-4 h-4 text-emerald-400" />
+            <SlidersHorizontal className="w-4 h-4 text-blue-600" />
             <span>Filters</span>
             {activeFiltersList.length > 0 && (
-              <span className="w-5 h-5 rounded-full bg-emerald-500 text-slate-950 font-bold text-[10px] flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center">
                 {activeFiltersList.length}
               </span>
             )}
           </button>
 
           {/* Results Count */}
-          <div className="text-xs text-slate-300">
-            <span className="font-bold text-white text-sm">{filteredMaterials.length}</span> materials found
+          <div className="text-xs text-slate-500 font-medium">
+            <span className="font-bold text-slate-900 text-sm font-display">{filteredMaterials.length}</span> materials found
           </div>
         </div>
 
         {/* Sort By Dropdown */}
         <div className="flex items-center gap-2 self-end sm:self-auto">
           <ArrowUpDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-          <span className="text-xs text-slate-400 hidden sm:inline">Sort by:</span>
+          <span className="text-xs text-slate-500 font-medium hidden sm:inline">Sort by:</span>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="bg-slate-900 border border-slate-800 text-slate-100 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500 cursor-pointer"
+            className="bg-slate-50 border border-slate-200 text-slate-900 text-xs font-semibold rounded-xl px-3 py-2 focus:outline-none focus:border-blue-600 cursor-pointer"
           >
             <option value="relevance">Relevance</option>
             <option value="newest">Newest</option>
@@ -273,20 +273,20 @@ export const MarketplacePage = () => {
       {/* Active Filter Tags */}
       {activeFiltersList.length > 0 && (
         <div className="flex items-center gap-2 flex-wrap text-xs">
-          <span className="text-slate-400 text-[11px] font-medium">Active filters:</span>
+          <span className="text-slate-500 text-[11px] font-medium">Active filters:</span>
           {activeFiltersList.map((tag) => (
             <button
               key={tag.key}
               onClick={tag.onClear}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 text-xs transition group"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 text-xs font-semibold transition group"
             >
               <span>{tag.label}</span>
-              <X className="w-3 h-3 text-emerald-400 group-hover:scale-110" />
+              <X className="w-3 h-3 text-blue-600 group-hover:scale-110" />
             </button>
           ))}
           <button
             onClick={handleResetFilters}
-            className="text-[11px] text-slate-400 hover:text-emerald-400 underline ml-2 transition"
+            className="text-[11px] text-slate-500 hover:text-blue-600 font-bold underline ml-2 transition"
           >
             Clear all
           </button>

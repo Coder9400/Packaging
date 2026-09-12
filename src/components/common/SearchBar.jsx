@@ -18,12 +18,12 @@ export const SearchBar = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-slate-900/90 border border-slate-800 hover:border-slate-700 text-slate-100 placeholder-slate-500 text-sm rounded-xl pl-10 pr-10 py-2.5 transition focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500"
+        className="w-full bg-white border border-slate-200 hover:border-slate-300 text-slate-900 placeholder-slate-400 text-sm rounded-xl pl-10 pr-10 py-2.5 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600"
       />
       {value && (
         <button
           onClick={onClear || (() => onChange(''))}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white"
+          className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700"
         >
           <X className="h-4 w-4" />
         </button>

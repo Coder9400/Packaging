@@ -112,100 +112,102 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex">
       {/* Left Panel: Enterprise Branding & Trust Seals (Desktop Split Screen) */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/40 p-12 flex-col justify-between border-r border-slate-800/80 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 p-12 flex-col justify-between overflow-hidden text-white shadow-2xl">
         {/* Subtle Ambient Radial Highlight */}
-        <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-emerald-500/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-white/10 blur-[140px] rounded-full pointer-events-none" />
 
         <div className="relative z-10">
           <Link to="/" className="inline-flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-200 shadow-lg shadow-emerald-500/10">
+            <div className="w-10 h-10 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-white group-hover:scale-105 transition-transform duration-200 shadow-lg">
               <Recycle className="w-5 h-5" />
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-bold text-xl text-white tracking-tight">Circular</span>
-              <span className="font-bold text-xl text-emerald-400 tracking-tight">Exchange</span>
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-xl text-white tracking-tight font-display">SYNAPSE</span>
+              <span className="text-[10px] font-bold tracking-widest text-white bg-white/20 px-2 py-0.5 rounded-full border border-white/30 uppercase">
+                Circular
+              </span>
             </div>
           </Link>
         </div>
 
         <div className="relative z-10 space-y-6 max-w-lg">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
-            <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/20 text-white text-xs font-semibold">
+            <ShieldCheck className="w-4 h-4 text-emerald-300" />
             <span>Verified Enterprise Secondary Raw Materials Network</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight font-display">
             Closed-loop packaging management for forward-thinking enterprises.
           </h2>
 
-          <p className="text-sm text-slate-400 leading-relaxed">
+          <p className="text-sm text-blue-100/90 leading-relaxed font-medium">
             Eliminate landfill overhead, monetise industrial surplus packaging, and automate certified Scope 3 GHG carbon offset tracking.
           </p>
 
-          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-800/80">
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-              <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs">
-                <Leaf className="w-4 h-4" />
+          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/20">
+            <div className="p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md space-y-1">
+              <div className="flex items-center gap-2 text-white font-extrabold text-sm">
+                <Leaf className="w-4 h-4 text-emerald-300" />
                 <span>12.45+ Tons</span>
               </div>
-              <p className="text-[11px] text-slate-400">Landfill Waste Diverted</p>
+              <p className="text-[11px] text-blue-100/80 font-medium">Landfill Waste Diverted</p>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
-              <div className="flex items-center gap-2 text-teal-400 font-semibold text-xs">
-                <Building2 className="w-4 h-4" />
+            <div className="p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md space-y-1">
+              <div className="flex items-center gap-2 text-white font-extrabold text-sm">
+                <Building2 className="w-4 h-4 text-emerald-300" />
                 <span>320+ Facilities</span>
               </div>
-              <p className="text-[11px] text-slate-400">Active Generators & Recyclers</p>
+              <p className="text-[11px] text-blue-100/80 font-medium">Active Generators & Recyclers</p>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 pt-6 border-t border-slate-850 flex items-center justify-between text-xs text-slate-500">
+        <div className="relative z-10 pt-6 border-t border-white/20 flex items-center justify-between text-xs text-blue-100/80 font-medium">
           <span>EPA WARM 15.0 Standard</span>
           <span>ISO 14044 LCA Accounting</span>
         </div>
       </div>
 
       {/* Right Panel: Clean Form Container */}
-      <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-16 py-12 relative">
-        <div className="max-w-md w-full mx-auto space-y-8">
+      <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-16 py-12 relative bg-slate-50">
+        <div className="max-w-md w-full mx-auto space-y-8 bg-white p-8 sm:p-10 rounded-3xl border border-slate-200/90 shadow-card">
           {/* Mobile Brand Link */}
           <div className="lg:hidden text-center">
             <Link to="/" className="inline-flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold">
                 <Recycle className="w-4 h-4" />
               </div>
-              <span className="font-bold text-lg text-white">Circular Exchange</span>
+              <span className="font-extrabold text-lg text-slate-900 font-display">SYNAPSE</span>
             </Link>
           </div>
 
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight font-display">
               Enterprise Sign-In
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1.5">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1.5 font-medium">
               Access your industrial material streams, RFQs, and circular telemetry.
             </p>
           </div>
 
           {/* Error Banner for Incorrect Credentials */}
           {authError && (
-            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-start gap-3 text-xs text-rose-300 animate-fade-in">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start gap-3 text-xs text-rose-800 animate-fade-in">
+              <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-rose-200">Authentication Failed</p>
-                <p className="mt-0.5 text-rose-300/90">{authError}</p>
+                <p className="font-bold text-rose-900">Authentication Failed</p>
+                <p className="mt-0.5 text-rose-700">{authError}</p>
               </div>
             </div>
           )}
 
           {/* Success Banner */}
           {isSuccess && (
-            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-xs text-emerald-300 animate-fade-in">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3 text-xs text-emerald-800 animate-fade-in font-medium">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Credentials verified! Redirecting to enterprise dashboard...</span>
             </div>
           )}
@@ -242,11 +244,11 @@ export const LoginPage = () => {
             />
 
             <div className="flex items-center justify-between text-xs pt-1">
-              <label className="flex items-center gap-2 text-slate-300 cursor-pointer">
+              <label className="flex items-center gap-2 text-slate-600 font-medium cursor-pointer">
                 <input
                   type="checkbox"
                   defaultChecked
-                  className="rounded bg-slate-900 border-slate-700 text-emerald-500 focus:ring-emerald-500/20"
+                  className="rounded bg-white border-slate-300 text-blue-600 focus:ring-blue-500/20"
                 />
                 <span>Remember this terminal</span>
               </label>
@@ -256,7 +258,7 @@ export const LoginPage = () => {
                   setForgotEmail(formData.email);
                   setIsForgotModalOpen(true);
                 }}
-                className="text-emerald-400 hover:text-emerald-300 font-medium transition"
+                className="text-blue-600 hover:text-blue-700 font-bold transition"
               >
                 Forgot Password?
               </button>
@@ -277,12 +279,12 @@ export const LoginPage = () => {
           </form>
 
           {/* Quick Persona Logins for Hackathon Testing */}
-          <div className="pt-6 border-t border-slate-850 space-y-3">
+          <div className="pt-6 border-t border-slate-100 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                 Demo Test Personas
               </span>
-              <Badge variant="teal" size="xs">One-Click Load</Badge>
+              <Badge variant="blue" size="xs">One-Click Load</Badge>
             </div>
 
             <div className="grid grid-cols-1 gap-2">
@@ -292,21 +294,21 @@ export const LoginPage = () => {
                   type="button"
                   onClick={() => handleQuickLogin(u)}
                   disabled={isLoading || isSuccess}
-                  className="w-full p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-slate-700 text-left flex items-center justify-between transition text-xs group"
+                  className="w-full p-3 rounded-xl bg-slate-50 hover:bg-blue-50/50 border border-slate-200 hover:border-blue-300 text-left flex items-center justify-between transition text-xs group"
                 >
                   <div className="truncate">
-                    <p className="font-semibold text-white group-hover:text-emerald-400 transition truncate">{u.name}</p>
-                    <p className="text-[10px] text-slate-400 truncate">{u.companyName} • {u.role}</p>
+                    <p className="font-bold text-slate-900 group-hover:text-blue-600 transition truncate">{u.name}</p>
+                    <p className="text-[10px] text-slate-500 truncate">{u.companyName} • {u.role}</p>
                   </div>
-                  <span className="text-[10px] text-slate-500 group-hover:text-slate-300 transition">Select ➔</span>
+                  <span className="text-[10px] font-bold text-blue-600 group-hover:translate-x-0.5 transition">Select ➔</span>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="text-center text-xs text-slate-400">
+          <div className="text-center text-xs text-slate-500 font-medium">
             Don't have a verified facility account?{' '}
-            <Link to="/register" className="text-emerald-400 hover:text-emerald-300 font-semibold">
+            <Link to="/register" className="text-blue-600 hover:text-blue-700 font-bold">
               Create Business Account
             </Link>
           </div>
@@ -322,12 +324,12 @@ export const LoginPage = () => {
       >
         {forgotStatus.success ? (
           <div className="p-6 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center">
               <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h4 className="text-base font-semibold text-white">Reset Email Dispatched!</h4>
-            <p className="text-xs text-slate-400">
-              Please check <span className="text-white font-medium">{forgotEmail}</span> for instructions to reset your password.
+            <h4 className="text-base font-bold text-slate-900 font-display">Reset Email Dispatched!</h4>
+            <p className="text-xs text-slate-500">
+              Please check <span className="text-slate-900 font-bold">{forgotEmail}</span> for instructions to reset your password.
             </p>
             <Button
               size="sm"
@@ -341,7 +343,7 @@ export const LoginPage = () => {
         ) : (
           <form onSubmit={handleForgotPasswordSubmit} className="space-y-4">
             {forgotStatus.error && (
-              <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-xs text-rose-400">
+              <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-700 font-medium">
                 {forgotStatus.error}
               </div>
             )}

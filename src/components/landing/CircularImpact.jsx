@@ -14,18 +14,18 @@ const impactIcons = {
 
 export const CircularImpact = () => {
   return (
-    <section id="impact" className="py-24 border-b border-slate-800/80 bg-slate-900/60 relative overflow-hidden">
+    <section id="impact" className="py-24 border-b border-slate-200/80 bg-slate-50/80 relative overflow-hidden">
       {/* Background Subtle Accent Gradients */}
-      <div className="absolute -top-24 right-1/4 w-96 h-96 bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute -bottom-24 left-1/4 w-96 h-96 bg-teal-500/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute -top-24 right-1/4 w-96 h-96 bg-blue-400/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-24 left-1/4 w-96 h-96 bg-indigo-400/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <Badge variant="emerald" size="sm">Audited Environmental Impact</Badge>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight font-display">
             Every reused material is one less material sent to landfill.
           </h2>
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Transparent circular economy accounting aligned with EPA WARM standard emissions offsets.
           </p>
         </div>
@@ -37,27 +37,27 @@ export const CircularImpact = () => {
             return (
               <div
                 key={stat.id}
-                className="p-6 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between space-y-4 hover:border-emerald-500/30 transition duration-150"
+                className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-card hover:shadow-card-hover flex flex-col justify-between space-y-4 hover:border-blue-300 transition duration-150"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                     {stat.label}
                   </span>
-                  <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                  <div className="p-2 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600">
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <div className="text-3xl font-extrabold text-white tracking-tight">
+                  <div className="text-3xl font-extrabold text-slate-900 tracking-tight font-display">
                     {stat.value}
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-slate-500 leading-relaxed">
                     {stat.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-900 text-[10px] text-emerald-400 font-mono">
+                <div className="pt-3 border-t border-slate-100 text-[10px] text-emerald-700 font-bold font-mono">
                   Verified by ISO 14044 LCA
                 </div>
               </div>

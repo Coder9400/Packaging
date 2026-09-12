@@ -51,9 +51,10 @@ export function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/listings/new" element={<Navigate to="/list-material" replace />} />
+              <Route path="/listings/create" element={<Navigate to="/list-material" replace />} />
               <Route path="/list-material" element={<ListMaterialPage />} />
               <Route path="/requests" element={<RequestsPage />} />
-              <Route path="/orders" element={<Navigate to="/requests?tab=orders" replace />} />
+              <Route path="/orders" element={<RequestsPage />} />
               <Route path="/orders/:id" element={<OrderDetailPage />} />
               <Route path="/logistics" element={<LogisticsPage />} />
               <Route path="/impact" element={<ImpactPage />} />

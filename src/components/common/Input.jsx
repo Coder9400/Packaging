@@ -17,15 +17,15 @@ export const Input = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-xs font-medium text-slate-300 tracking-wide uppercase"
+          className="block text-[11px] font-semibold text-slate-700 tracking-wider uppercase mb-1"
         >
           {label}
         </label>
       )}
 
-      <div className="relative rounded-lg shadow-sm">
+      <div className="relative rounded-xl shadow-sm">
         {Icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
             <Icon className="h-4 w-4" />
           </div>
         )}
@@ -33,12 +33,12 @@ export const Input = ({
           id={inputId}
           type={type}
           className={`
-            block w-full rounded-lg bg-slate-900/80 border text-slate-100 placeholder-slate-500
-            text-sm py-2.5 transition duration-150 ease-in-out
-            focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500
-            ${Icon ? 'pl-9' : 'pl-3.5'}
+            block w-full rounded-xl bg-white border text-slate-900 placeholder-slate-400
+            text-sm py-2.5 transition duration-150 ease-in-out shadow-sm
+            focus:outline-none focus:ring-4 focus:ring-blue-500/15 focus:border-blue-600
+            ${Icon ? 'pl-10' : 'pl-3.5'}
             pr-3.5
-            ${error ? 'border-rose-500/80 focus:border-rose-500 focus:ring-rose-500/20' : 'border-slate-700/80 hover:border-slate-600'}
+            ${error ? 'border-rose-300 focus:border-rose-500 focus:ring-rose-500/15' : 'border-slate-200 hover:border-slate-300'}
             ${className}
           `}
           {...props}

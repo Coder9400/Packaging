@@ -1,14 +1,14 @@
 import React from 'react';
 
 const badgeVariants = {
-  default: 'bg-slate-800 text-slate-300 border-slate-700',
-  brand: 'bg-brand-500/10 text-brand-400 border-brand-500/30',
-  teal: 'bg-teal-500/10 text-teal-400 border-teal-500/30',
-  emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-  amber: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-  rose: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
-  blue: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-  purple: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+  default: 'bg-slate-100 text-slate-700 border-slate-200',
+  brand: 'bg-blue-50 text-blue-600 border-blue-200',
+  blue: 'bg-blue-50 text-blue-600 border-blue-200',
+  teal: 'bg-teal-50 text-teal-700 border-teal-200',
+  emerald: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  amber: 'bg-amber-50 text-amber-700 border-amber-200',
+  rose: 'bg-rose-50 text-rose-700 border-rose-200',
+  purple: 'bg-purple-50 text-purple-700 border-purple-200',
 };
 
 const badgeSizes = {

@@ -11,12 +11,12 @@ export const EmptyState = ({
   className = '',
 }) => {
   return (
-    <div className={`flex flex-col items-center justify-center p-12 text-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/30 ${className}`}>
-      <div className="w-14 h-14 rounded-2xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 mb-4 shadow-inner">
-        <Icon className="w-7 h-7 text-slate-300" />
+    <div className={`flex flex-col items-center justify-center p-12 text-center rounded-3xl border border-dashed border-slate-200 bg-white/90 shadow-sm ${className}`}>
+      <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mb-4 shadow-sm">
+        <Icon className="w-7 h-7" />
       </div>
-      <h3 className="text-base font-semibold text-white tracking-tight">{title}</h3>
-      <p className="mt-1.5 text-xs text-slate-400 max-w-sm leading-relaxed">{description}</p>
+      <h3 className="text-base font-bold text-slate-900 tracking-tight font-display">{title}</h3>
+      <p className="mt-1.5 text-xs text-slate-500 max-w-sm leading-relaxed">{description}</p>
       {actionLabel && onAction && (
         <div className="mt-5">
           <Button onClick={onAction} size="sm" variant="primary">
